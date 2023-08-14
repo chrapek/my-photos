@@ -1,0 +1,29 @@
+{
+  "name": "subjects",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/subjects/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/subjects",
+        "main": "libs/shared/subjects/src/index.ts",
+        "tsConfig": "libs/shared/subjects/tsconfig.lib.json",
+        "assets": ["libs/shared/subjects/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/subjects/**/*.ts",
+          "libs/shared/subjects/package.json"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
