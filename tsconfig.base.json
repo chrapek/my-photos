@@ -7,24 +7,21 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "esModuleInterop": true,
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2020",
-      "dom"
-    ],
+    "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@app/shared/subjects": [
-        "libs/shared/subjects/src/index.ts"
+      "@app/shared/crypto": ["libs/shared/crypto/src/index.ts"],
+      "@app/shared/subjects": ["libs/shared/subjects/src/index.ts"],
+      "@app/shared/drizzle-orm-nest": [
+        "libs/shared/drizzle-orm-nest/src/index.ts"
       ]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

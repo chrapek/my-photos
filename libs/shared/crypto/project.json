@@ -1,0 +1,29 @@
+{
+  "name": "crypto",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/crypto/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/crypto",
+        "main": "libs/shared/crypto/src/index.ts",
+        "tsConfig": "libs/shared/crypto/tsconfig.lib.json",
+        "assets": ["libs/shared/crypto/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/crypto/**/*.ts",
+          "libs/shared/crypto/package.json"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
