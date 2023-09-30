@@ -9,8 +9,7 @@ export class DrizzleOrmModule {
     const dbProvider = {
       provide: DrizzleOrmService,
       useFactory: () => {
-        const { NX_DB_USERNAME, NX_DB_PASSWORD, NX_DB_HOST, NX_DB_PORT, NX_DB_NAME } = process.env;
-        const client = postgres(`postgres://${NX_DB_USERNAME}:${NX_DB_PASSWORD}@${NX_DB_HOST}:${NX_DB_PORT}/${NX_DB_NAME}`);
+        const client = postgres(process.env.NX_DB_URL);
         return drizzle(client);
       }
     }

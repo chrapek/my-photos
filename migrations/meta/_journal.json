@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1696066699301,
+      "tag": "0000_typical_zodiak",
+      "breakpoints": true
+    }
+  ]
+}
