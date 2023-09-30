@@ -1,6 +1,12 @@
 import { boolean, pgEnum, pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
+import { InferModel } from 'drizzle-orm';
 
-export const typeEnum = pgEnum('file_type', ['IMAGE', 'VIDEO']);
+export const FileType = {
+  IMAGE: 'IMAGE',
+  VIDEO: 'VIDEO',
+};
+
+export const typeEnum = pgEnum('file_type', [FileType.IMAGE, FileType.VIDEO]);
 
 export const files = pgTable('files', {
   id: serial('id').primaryKey(),
@@ -13,3 +19,6 @@ export const files = pgTable('files', {
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at'),
 });
+
+export type File = InferModel<typeof files>;
+export type NewFile = InferModel<typeof files, 'insert'>;

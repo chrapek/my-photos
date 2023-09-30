@@ -4,8 +4,8 @@ import { existsSync, readdirSync, statSync } from 'fs';
 import { extname, join } from 'path';
 import { PATH_IMAGE_ADD, PATH_VIDEO_ADD } from '@app/shared/subjects';
 import { hashFile } from '@app/shared/crypto';
-import { DrizzleOrmService } from '@app/shared/drizzle-orm-nest';
-import { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
+import { DB, DbType } from '@app/shared/drizzle-orm-nest';
+import { FileType, files } from '@app/shared/db-schema';
 
 @Injectable()
 export class AppService {
@@ -13,13 +13,11 @@ export class AppService {
 
   constructor(
     private client: NatsJetStreamClientProxy,
-    // @Inject('DB') private database: PostgresJsDatabase
-    private database: DrizzleOrmService
+    @Inject(DB) private readonly db: DbType
   ) {}
 
   indexAll() {
-    console.log(this.database);
-    async function traverseDirectory(currentPath: string, client: NatsJetStreamClientProxy) {
+    async function traverseDirectory(currentPath: string, client: NatsJetStreamClientProxy, db: DbType) {
       const items = readdirSync(currentPath);
 
       for (const item of items) {
@@ -30,13 +28,20 @@ export class AppService {
         }
 
         if (statSync(itemPath).isDirectory()) {
-          traverseDirectory(itemPath, client);
+          traverseDirectory(itemPath, client, db);
         } else {
           const extension = extname(itemPath).toLowerCase();
           const hash = await (await hashFile(itemPath)).toString('base64')
           console.log(hash);
           if (['.jpg', '.jpeg', '.png', '.gif'].includes(extension)) {
             console.log(itemPath)
+            const file = await db.insert(files).values({ 
+              hash, 
+              type: FileType.IMAGE,
+              fileName: item,
+            }).onConflictDoNothing().returning();
+            console.log("INSERTED FILE")
+            console.log(file)
             // client.emit(`${PATH_IMAGE_ADD}.${extension.substring(1)}`, itemPath)
           }
           if (['.mp4', '.avi', '.mov'].includes(extension)) {
@@ -47,6 +52,6 @@ export class AppService {
       }
     }
 
-    traverseDirectory(join(process.cwd(), this.mediaDir), this.client);
+    traverseDirectory(join(process.cwd(), this.mediaDir), this.client, this.db);
   }
 }

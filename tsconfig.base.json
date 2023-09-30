@@ -21,8 +21,7 @@
         "libs/shared/drizzle-orm-nest/src/index.ts"
       ],
       "@app/shared/subjects": ["libs/shared/subjects/src/index.ts"],
-      "@my-photos/db-models": ["libs/db-models/src/index.ts"],
-      "@my-photos/shared/db-schema": ["libs/shared/db-schema/src/index.ts"]
+      "@app/shared/db-schema": ["libs/shared/db-schema/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

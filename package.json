@@ -2,7 +2,10 @@
   "name": "@my-photos/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "db:migrate:generate": "NX_DB_URL=postgres://dbUser:dbPassword@localhost:45432/app npx drizzle-kit generate:pg",
+    "db:migrate:up": "NX_DB_URL=postgres://dbUser:dbPassword@localhost:45432/app npx drizzle-kit up:pg"
+  },
   "private": true,
   "dependencies": {
     "@nestjs-plugins/nestjs-nats-jetstream-transport": "^2.0.0",

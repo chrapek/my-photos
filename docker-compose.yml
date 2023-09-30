@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  nats:
+    container_name: photos_nats
+    image: nats:latest
+    ports:
+      - 8222:8222
+      - 4222:4222
+      - 6222:6222
+    command: "--name nats-server -js"
+  
+  db:
+    container_name: photos_db
+    image: postgres:16-alpine
+    ports:
+      - 45432:5432
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=dbPassword
+      - POSTGRES_USER=dbUser
+      - POSTGRES_DB=app

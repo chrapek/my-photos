@@ -12,7 +12,7 @@ import { DrizzleOrmModule } from '@app/shared/drizzle-orm-nest'
         name: 'indexer-publisher',
       },
     }),
-    DrizzleOrmModule.forRoot(),
+    DrizzleOrmModule,
   ],
   controllers: [AppController],
   providers: [AppService],

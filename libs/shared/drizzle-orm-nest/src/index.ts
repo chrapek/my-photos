@@ -1,2 +1,2 @@
 export * from './lib/drizzle-orm.module';
-export * from './lib/drizzle-orm.service';
+export {DB, DbType } from './lib/drizzle-orm.provider';
