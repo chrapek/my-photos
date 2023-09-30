@@ -22,7 +22,8 @@
       "@app/shared/drizzle-orm-nest": [
         "libs/shared/drizzle-orm-nest/src/index.ts"
       ],
-      "@app/shared/subjects": ["libs/shared/subjects/src/index.ts"]
+      "@app/shared/subjects": ["libs/shared/subjects/src/index.ts"],
+      "@app/shared/common": ["libs/shared/common/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

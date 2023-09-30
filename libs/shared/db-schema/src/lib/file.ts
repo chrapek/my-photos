@@ -1,10 +1,6 @@
 import { boolean, pgEnum, pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
 import { InferModel } from 'drizzle-orm';
-
-export const FileType = {
-  IMAGE: 'IMAGE',
-  VIDEO: 'VIDEO',
-};
+import { FileType } from '@app/shared/common';
 
 export const typeEnum = pgEnum('file_type', [FileType.IMAGE, FileType.VIDEO]);
 

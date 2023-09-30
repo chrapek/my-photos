@@ -1,11 +1,11 @@
 import { Controller } from '@nestjs/common';
-import { AppService } from './app.service';
+import { IndexerService } from './indexer.service';
 import { EventPattern} from '@nestjs/microservices';
 import { INDEX_ALL } from '@app/shared/subjects';
 
 @Controller()
-export class AppController {
-  constructor(private readonly service: AppService) {}
+export class IndexerController {
+  constructor(private readonly service: IndexerService) {}
 
   @EventPattern(INDEX_ALL)
   indexFiles() {

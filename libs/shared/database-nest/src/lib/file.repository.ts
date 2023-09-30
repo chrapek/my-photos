@@ -9,7 +9,7 @@ export class FileRepository {
   async create(file: NewFile) {
     return await this.db.insert(files)
       .values(file)
-      .onConflictDoUpdate({target: files.id, set: file})
+      .onConflictDoUpdate({target: files.hash, set: file})
       .returning();
   }
 }
