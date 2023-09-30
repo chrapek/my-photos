@@ -4,6 +4,10 @@
 
 nx run-many --target=serve --all 
 nats in docker 
+
+brew tap nats-io/nats-tools
+brew install nats-io/nats-tools/nats
+
 docker run -p 4222:4222 -p 8222:8222 -p 6222:6222 --name nats-server -ti nats:latest -js
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>

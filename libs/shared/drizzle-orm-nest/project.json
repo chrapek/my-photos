@@ -1,5 +1,5 @@
 {
-  "name": "shared-drizzle-orm-nest",
+  "name": "drizzle-orm-nest",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/drizzle-orm-nest/src",
   "projectType": "library",

@@ -17,11 +17,14 @@
     "baseUrl": ".",
     "paths": {
       "@app/shared/crypto": ["libs/shared/crypto/src/index.ts"],
+      "@app/shared/db-schema": ["libs/shared/db-schema/src/index.ts"],
       "@app/shared/drizzle-orm-nest": [
         "libs/shared/drizzle-orm-nest/src/index.ts"
       ],
       "@app/shared/subjects": ["libs/shared/subjects/src/index.ts"],
-      "@app/shared/db-schema": ["libs/shared/db-schema/src/index.ts"]
+      "@app/shared/database-nest": [
+        "libs/shared/database-nest/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
