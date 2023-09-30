@@ -7,21 +7,20 @@ import { IMAGE_FILE_ADD } from '@app/shared/subjects';
 
 @Injectable()
 export class FileService {
-
   constructor(
     private readonly fileRepository: FileRepository,
     private client: NatsJetStreamClientProxy
-    ) {}
+  ) {}
 
   async processFileAddedEvent({ fileName, path, type }: NewPath) {
     console.log(path);
-    const hash =  (await hashFile(path)).toString('base64');
-    const file = await this.fileRepository.create({ 
-      hash, 
+    const hash = (await hashFile(path)).toString('base64');
+    const file = await this.fileRepository.create({
+      hash,
       type,
       fileName,
-    })
+    });
 
-    this.client.emit(IMAGE_FILE_ADD, { id: file })
+    this.client.emit(IMAGE_FILE_ADD, { id: file });
   }
 }

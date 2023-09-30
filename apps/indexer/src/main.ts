@@ -16,7 +16,10 @@ async function bootstrap() {
       },
     }),
   };
-  const app = await NestFactory.createMicroservice<MicroserviceOptions>(IndexerModule, options);
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
+    IndexerModule,
+    options
+  );
 
   await app.listen();
 }

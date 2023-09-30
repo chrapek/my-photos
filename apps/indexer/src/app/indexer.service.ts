@@ -12,10 +12,16 @@ export class IndexerService {
   constructor(private client: NatsJetStreamClientProxy) {}
 
   indexAll() {
-    this.indexLocalStorageRecursive(join(process.cwd(), this.mediaDir), this.client);
+    this.indexLocalStorageRecursive(
+      join(process.cwd(), this.mediaDir),
+      this.client
+    );
   }
 
-  async indexLocalStorageRecursive(currentPath: string, client: NatsJetStreamClientProxy) {
+  async indexLocalStorageRecursive(
+    currentPath: string,
+    client: NatsJetStreamClientProxy
+  ) {
     const items = readdirSync(currentPath);
 
     for (const item of items) {
@@ -30,10 +36,18 @@ export class IndexerService {
       } else {
         const extension = extname(itemPath).toLowerCase();
         if (['.jpg', '.jpeg', '.png', '.gif'].includes(extension)) {
-          client.emit(`${PATH_IMAGE_ADD}.${extension.substring(1)}`, { fileName: item, path: itemPath, type: FileType.IMAGE })
+          client.emit(`${PATH_IMAGE_ADD}.${extension.substring(1)}`, {
+            fileName: item,
+            path: itemPath,
+            type: FileType.IMAGE,
+          });
         }
         if (['.mp4', '.avi', '.mov'].includes(extension)) {
-          client.emit(`${PATH_VIDEO_ADD}.${extension.substring(1)}`, { fileName: item, path: itemPath, type: FileType.IMAGE })
+          client.emit(`${PATH_VIDEO_ADD}.${extension.substring(1)}`, {
+            fileName: item,
+            path: itemPath,
+            type: FileType.IMAGE,
+          });
         }
       }
     }

@@ -1,5 +1,5 @@
-import { createHash } from "crypto";
-import { createReadStream } from "fs";
+import { createHash } from 'crypto';
+import { createReadStream } from 'fs';
 
 export const hashFile = async (filepath: string): Promise<Buffer> => {
   return new Promise<Buffer>((resolve, reject) => {
@@ -9,4 +9,4 @@ export const hashFile = async (filepath: string): Promise<Buffer> => {
     stream.on('data', (chunk) => hash.update(chunk));
     stream.on('end', () => resolve(hash.digest()));
   });
-}
+};

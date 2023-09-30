@@ -1,4 +1,11 @@
-import { boolean, pgEnum, pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
+import {
+  boolean,
+  pgEnum,
+  pgTable,
+  serial,
+  timestamp,
+  varchar,
+} from 'drizzle-orm/pg-core';
 import { InferModel } from 'drizzle-orm';
 import { FileType } from '@app/shared/common';
 

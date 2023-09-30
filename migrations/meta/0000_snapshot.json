@@ -73,9 +73,7 @@
         "files_hash_unique": {
           "name": "files_hash_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "hash"
-          ]
+          "columns": ["hash"]
         }
       }
     }
