@@ -3,7 +3,9 @@ import { FileRepository } from '@app/shared/database-nest';
 import { Injectable } from '@nestjs/common';
 import { NewPath } from '@app/shared/common';
 import { NatsJetStreamClientProxy } from '@nestjs-plugins/nestjs-nats-jetstream-transport';
-import { IMAGE_FILE_ADD } from '@app/shared/subjects';
+import { DefaultReadTaskOptions, exiftool } from 'exiftool-vendored';
+import { FILE_ADD } from '@app/shared/subjects';
+
 
 @Injectable()
 export class FileService {
@@ -13,7 +15,6 @@ export class FileService {
   ) {}
 
   async processFileAddedEvent({ fileName, path, type }: NewPath) {
-    console.log(path);
     const hash = (await hashFile(path)).toString('base64');
     const file = await this.fileRepository.create({
       hash,
@@ -21,6 +22,18 @@ export class FileService {
       fileName,
     });
 
-    this.client.emit(IMAGE_FILE_ADD, { id: file });
+    this.client.emit(FILE_ADD, { id: file });
+  }
+
+  async getMetadata(path: string) {
+    const exifTags = await exiftool.read(path, undefined, {
+      ...DefaultReadTaskOptions,
+      defaultVideosToUTC: true,
+      backfillTimezones: true,
+      inferTimezoneFromDatestamps: true,
+      useMWG: true,
+    });
+
+    return exifTags;
   }
 }

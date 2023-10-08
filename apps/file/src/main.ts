@@ -12,9 +12,9 @@ async function bootstrap() {
         name: 'file-listener',
       },
       consumerOptions: {
-        durable: 'file-microservice',
-        deliverTo: 'test',
-      },
+        durable: 'files-consumer',
+        deliverTo: 'response'
+      }
     }),
   };
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(

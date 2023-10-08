@@ -12,8 +12,9 @@ async function bootstrap() {
         name: 'indexer-listener',
       },
       consumerOptions: {
-        durable: 'index-microservice',
-      },
+        durable: 'indexer-consumer',
+        deliverTo: 'response'
+      }
     }),
   };
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(

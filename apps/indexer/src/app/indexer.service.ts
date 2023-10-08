@@ -46,7 +46,7 @@ export class IndexerService {
           client.emit(`${PATH_VIDEO_ADD}.${extension.substring(1)}`, {
             fileName: item,
             path: itemPath,
-            type: FileType.IMAGE,
+            type: FileType.VIDEO,
           });
         }
       }

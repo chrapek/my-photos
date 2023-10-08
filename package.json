@@ -16,6 +16,8 @@
     "axios": "^1.0.0",
     "crypto": "^1.0.1",
     "drizzle-orm": "^0.28.2",
+    "exiftool-vendored": "^23.3.0",
+    "mediainfo.js": "^0.2.1",
     "nats": "^2.15.1",
     "postgres": "^3.3.5",
     "reflect-metadata": "^0.1.13",
